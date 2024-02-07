@@ -21,6 +21,7 @@ print('Test Known:  {}'.format(args.test_known_labels))
 train_loader,valid_loader,test_loader = get_data(args)
 
 # print(train_loader[0])
+print(type(train_loader))
 batch = next(train_loader)
 test = batch[0]
 print(type(test))
