@@ -22,10 +22,7 @@ train_loader,valid_loader,test_loader = get_data(args)
 
 # print(train_loader[0])
 batch = next(iter(train_loader))
-print(type(batch))
-print(batch.keys())
-element = batch[0]
-print(type(element))
+print(type(batch['labels']))
 # batch = next(train_loader)
 # test = batch[0]
 # print(type(test))
