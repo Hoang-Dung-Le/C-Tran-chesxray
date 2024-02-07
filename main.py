@@ -21,11 +21,11 @@ print('Test Known:  {}'.format(args.test_known_labels))
 train_loader,valid_loader,test_loader = get_data(args)
 
 # print(train_loader[0])
-print(type(train_loader))
-batch = next(train_loader)
-test = batch[0]
-print(type(test))
-print(test['labels'])
+print(type(train_loader[0]))
+# batch = next(train_loader)
+# test = batch[0]
+# print(type(test))
+# print(test['labels'])
 
 if args.dataset == 'cub':
     model = CTranModelCub(args.num_labels,args.use_lmt,args.pos_emb,args.layers,args.heads,args.dropout,args.no_x_features)
