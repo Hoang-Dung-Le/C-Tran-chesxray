@@ -4,7 +4,7 @@ from .dataloader_med import ChestX_ray14
 from .aihc_utils import image_transform
 
 def load_dataset(split, args):
-
+    print("ok")
     if args.aug_setting == 'moco_v2':
         # print("data moco_v2")
         normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
