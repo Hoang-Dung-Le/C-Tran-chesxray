@@ -10,7 +10,7 @@ import utils.logger as logger
 from pdb import set_trace as stop
 from optim_schedule import WarmupLinearSchedule
 from run_epoch import run_epoch
-from load_dataset.utils import load_dataset
+from load_dataset.utils.load_dataset import load_dataset
 
 args = get_args(argparse.ArgumentParser())
 
@@ -20,6 +20,7 @@ print('Train Known: {}'.format(args.train_known_labels))
 print('Test Known:  {}'.format(args.test_known_labels))
 
 # train_loader,valid_loader,test_loader = get_data(args)
+print(type(load_dataset))
 train_loader = load_dataset(split='train', args=args)
 valid_loader = load_dataset(split='val', args=args)
 test_loader = load_dataset(split='test', args=args)
