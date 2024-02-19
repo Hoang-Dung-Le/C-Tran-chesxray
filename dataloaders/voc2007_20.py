@@ -70,7 +70,7 @@ class Voc07Dataset(torch.utils.data.Dataset):
         sample = {}
         sample['image'] = image
         sample['labels'] = labels
-        # sample['mask'] = mask
+        sample['mask'] = mask
         sample['imageIDs'] = str(name)
 
         return sample

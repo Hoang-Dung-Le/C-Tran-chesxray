@@ -20,7 +20,7 @@ NORMALIZATION_STATISTICS = {"self_learning_cubes_32": [[0.11303308354465243, 0.1
                             "lits_seg": [[0.46046468844492944, 0.17490586272419967]],
                             "pe": [[0.26125720740546626, 0.20363551346695796]]}
 
-def get_unk_mask_indices(image,testing,num_labels,known_labels,epoch=1):
+def get_unk_mask_indices(image,testing,num_labels,known_labels=14,epoch=1):
     if testing:
         # for consistency across epochs and experiments, seed using hashed image array 
         random.seed(hashlib.sha1(np.array(image)).hexdigest())
@@ -195,11 +195,13 @@ from torch.utils.data import Dataset
 # --------------------------------------------Downstream ChestX-ray14-------------------------------------------
 class   ChestX_ray14(Dataset):
     def __init__(self, data_dir, file, augment,
-                 num_class=14, img_depth=3, heatmap_path=None,
+                 num_class=14, img_depth=3, know_labels=14, testing=False, heatmap_path=None,
                  pretraining=False):
         self.img_list = []
         self.img_label = []
-
+        self.know_labels = know_labels
+        self.testing = testing
+        self.num_labels = 14
         with open(file, "r") as fileDescriptor:
             line = True
             while line:
@@ -239,11 +241,13 @@ class   ChestX_ray14(Dataset):
             sample = dict()
             sample['image'] = img
             sample['labels'] = label
-            unk_mask_indices = get_unk_mask_indices(image,self.testing,self.num_labels,self.known_labels,self.epoch)
+            sample['imageIDs'] = str(index)
+            unk_mask_indices = get_unk_mask_indices(img,self.testing,self.num_labels,14,self.epoch)
 
             mask = label.clone()
             mask.scatter_(0,torch.Tensor(unk_mask_indices).long() , -1)
-            return img, label
+            sample['mask'] = mask
+            return sample
         else:
             # heatmap = Image.open('nih_bbox_heatmap.png')
             heatmap = self.heatmap

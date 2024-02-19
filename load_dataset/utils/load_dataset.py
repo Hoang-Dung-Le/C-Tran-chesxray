@@ -28,7 +28,7 @@ def load_dataset(split, args):
         if split == "train":
             return ChestX_ray14(args.data_path, data_list, augment=train_augmentation, num_class=args.num_classes)
         elif split == "test" or split == 'val':
-            return ChestX_ray14(args.data_path, data_list, augment=test_augmentation, num_class=args.num_classes)
+            return ChestX_ray14(args.data_path, data_list, augment=test_augmentation, num_class=args.num_classes, testing=True)
         
     else:
         # print("data ch")
