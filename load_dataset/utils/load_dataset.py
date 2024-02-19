@@ -1,6 +1,7 @@
 from torchvision import datasets, transforms
 from .dataloader_med import ChestX_ray14
-import aihc_utils.image_transform as image_transform
+# import aihc_utils.image_transform as image_transform
+from .aihc_utils import image_transform
 
 def load_dataset(split, args):
 
