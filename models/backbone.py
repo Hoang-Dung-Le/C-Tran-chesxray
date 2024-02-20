@@ -20,6 +20,20 @@ class Backbone(nn.Module):
 
         # self.base_network = models.resnet101(pretrained=True)
         self.base_network = models.resnet34(pretrained=True)
+        checkpoint = torch.load('/content/drive/MyDrive/LUAN_VAN/Resnet34_SSL_checkpoint_0020.pth.tar', map_location="cpu")
+
+            # rename moco pre-trained keys
+        state_dict = checkpoint['state_dict']
+        for k in list(state_dict.keys()):
+            # retain only encoder_q up to before the embedding layer
+            if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc'):
+                # remove prefix
+                state_dict[k[len("module.encoder_q."):]] = state_dict[k]
+            # delete renamed or unused k
+            del state_dict[k]
+
+        start_epoch = 0
+        self.base_network.load_state_dict(state_dict, strict=False)
 
         self.base_network.avgpool = nn.AvgPool2d(kernel_size=7,stride=1,padding=0) # replace avg pool
         # self.base_network.avgpool = nn.AvgPool2d(2,stride=2) # replace avg pool
