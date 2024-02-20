@@ -155,6 +155,14 @@ for epoch in range(1,args.epochs+1):
     print('======================== {} ========================'.format(epoch))
     for param_group in optimizer.param_groups:
         print('LR: {}'.format(param_group['lr']))
+    if test_loader is not None:
+        all_preds,all_targs,all_masks,all_ids,test_loss,test_loss_unk = run_epoch(args,model,test_loader,None,epoch,'Testing')
+        result = computeAUROC(all_preds, all_targs)
+        print(result)
+        test_metrics = evaluate.compute_metrics(args,all_preds,all_targs,all_masks,test_loss,test_loss_unk,0,args.test_known_labels)
+    else:
+        test_loss,test_loss_unk,test_metrics = valid_loss,valid_loss_unk,valid_metrics
+    loss_logger.log_losses('test.log',epoch,test_loss,test_metrics,test_loss_unk)
 
     train_loader.dataset.epoch = epoch
     ################### Train #################

@@ -216,6 +216,7 @@ class   ChestX_ray14(Dataset):
 
         self.augment = augment
         self.img_depth = img_depth
+        self.epoch = 1
         if heatmap_path is not None:
             # self.heatmap = cv2.imread(heatmap_path)
             self.heatmap = Image.open(heatmap_path).convert('RGB')
