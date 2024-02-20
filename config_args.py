@@ -70,7 +70,7 @@ def get_args(parser,eval=False):
 
     model_name = args.dataset
     if args.dataset == 'voc':
-        args.num_labels = 20
+        args.num_labels = 14
     elif args.dataset == 'nus':
         args.num_labels = 1000
     elif args.dataset == 'coco1000':
