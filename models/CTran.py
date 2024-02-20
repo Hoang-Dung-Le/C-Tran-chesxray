@@ -19,8 +19,8 @@ class CTranModel(nn.Module):
 
         # ResNet backbone
         self.backbone = Backbone()
-        hidden = 2048 # this should match the backbone output feature size
-
+        # hidden = 2048 # this should match the backbone output feature size
+        hidden = 512
         self.downsample = False
         if self.downsample:
             self.conv_downsample = torch.nn.Conv2d(hidden,hidden,(1,1))

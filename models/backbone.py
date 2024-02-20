@@ -13,7 +13,8 @@ import torch.utils.model_zoo as model_zoo
 class Backbone(nn.Module):
     def __init__(self):
         super(Backbone, self).__init__()
-        embedding_dim = 2048
+        # embedding_dim = 2048
+        embedding_dim = 512
         self.freeze_base = False
         self.freeze_base4 = False
 
