@@ -56,6 +56,13 @@ def get_args(parser,eval=False):
     
     parser.add_argument('--overwrite', action='store_true')
     parser.add_argument('--name', type=str, default='')
+
+    parser.add_argument('--data_path', default='/datasets01/imagenet_full_size/061417/', type=str,
+                        help='dataset path')
+
+    parser.add_argument("--train_list", default=None, type=str, help="file for train list")
+    parser.add_argument("--val_list", default=None, type=str, help="file for val list")
+    parser.add_argument("--test_list", default=None, type=str, help="file for test list")
     args = parser.parse_args()
 
     model_name = args.dataset
