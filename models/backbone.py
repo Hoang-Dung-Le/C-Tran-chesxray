@@ -17,7 +17,8 @@ class Backbone(nn.Module):
         self.freeze_base = False
         self.freeze_base4 = False
 
-        self.base_network = models.resnet101(pretrained=True)
+        # self.base_network = models.resnet101(pretrained=True)
+        self.base_network = models.resnet34(pretrained=True)
 
         self.base_network.avgpool = nn.AvgPool2d(kernel_size=7,stride=1,padding=0) # replace avg pool
         # self.base_network.avgpool = nn.AvgPool2d(2,stride=2) # replace avg pool
