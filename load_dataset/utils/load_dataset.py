@@ -27,7 +27,8 @@ def load_dataset(split, args):
         normTransform = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         rescale=args.scale_size
         batch_size=args.batch_size
-        rescale=args.scale_size
+        # rescale=args.scale_size
+        scale_size = rescale
         random_crop=args.crop_size
         crop_size = random_crop
         if args.test_batch_size == -1:
