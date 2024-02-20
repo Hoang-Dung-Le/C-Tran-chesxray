@@ -2,6 +2,7 @@ from torchvision import datasets, transforms
 from .dataloader_med import ChestX_ray14
 # import aihc_utils.image_transform as image_transform
 from .aihc_utils import image_transform
+from torch.utils.data import Dataset, DataLoader
 
 def load_dataset(split, args):
     # print("ok")
@@ -31,6 +32,11 @@ def load_dataset(split, args):
         scale_size = rescale
         random_crop=args.crop_size
         crop_size = random_crop
+
+        workers=args.workers
+        n_groups=args.n_groups
+
+        
         if args.test_batch_size == -1:
             args.test_batch_size = batch_size
 
@@ -55,10 +61,11 @@ def load_dataset(split, args):
         data_list = getattr(args, f'{split}_list')
 
         if split == "train":
-            return ChestX_ray14(args.data_path, data_list, augment=trainTransform, num_class=args.num_classes)
+            train_dataset = ChestX_ray14(args.data_path, data_list, augment=trainTransform, num_class=args.num_classes)
+            return DataLoader(train_dataset, batch_size=batch_size,shuffle=True, num_workers=workers,drop_last=False)
         elif split == "test" or split == 'val':
-            return ChestX_ray14(args.data_path, data_list, augment=testTransform, num_class=args.num_classes, testing=True)
-        
+            test_dataset=ChestX_ray14(args.data_path, data_list, augment=testTransform, num_class=args.num_classes, testing=True)
+            return DataLoader(test_dataset, batch_size=args.test_batch_size,shuffle=False, num_workers=workers)
     # else:
         # # print("data ch")
         # data_list = getattr(args, f'{split}_list')
