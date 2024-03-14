@@ -3,7 +3,7 @@ import torch, torch.nn as nn, torch.nn.functional as F
 from pdb import set_trace as stop
 from tqdm import tqdm
 from models.utils import custom_replace
-import random
+torch.manual_seed(0)
 
 
 def run_epoch(args,model,data,optimizer,epoch,desc,train=False,warmup_scheduler=None):

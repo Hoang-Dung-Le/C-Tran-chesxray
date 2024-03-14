@@ -8,6 +8,7 @@ import copy
 import math
 from typing import Optional, List
 from torch import nn, Tensor
+torch.manual_seed(0)
 
 def custom_replace(tensor,on_neg_1,on_zero,on_one):
     res = tensor.clone()

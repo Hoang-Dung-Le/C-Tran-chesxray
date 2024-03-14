@@ -12,7 +12,7 @@ import torchvision.transforms.functional as TF
 import random
 import csv
 from dataloaders.data_utils import get_unk_mask_indices
-
+torch.manual_seed(0)
 
 
 from xml.dom.minidom import parse 

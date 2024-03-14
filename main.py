@@ -11,7 +11,7 @@ from pdb import set_trace as stop
 from optim_schedule import WarmupLinearSchedule
 from run_epoch import run_epoch
 from load_dataset.utils.load_dataset import load_dataset
-
+torch.manual_seed(0)
 from sklearn.metrics import roc_auc_score, roc_curve
 import matplotlib.pyplot as plt
 
@@ -23,16 +23,7 @@ def computeAUROC(dataPRED, dataGT, classCount=14):
     
     for i in range(classCount):
         try:
-            # Apply sigmoid to predictions
-            # pred_probs = torch.sigmoid(torch.tensor(dataPRED[:, i]))
             pred_probs = dataPRED[:, i]
-           
-            # print(pred_probs)
-            # print(dataGT[:, i].shape)
-            # print(dataGT)
-            # print("_________________________")
-            # print(pred_probs)
-            # Calculate ROC curve for each class
             fpr, tpr, threshold = roc_curve(dataGT[:, i], pred_probs)
            
             roc_auc = roc_auc_score(dataGT[:, i], pred_probs)
@@ -62,7 +53,7 @@ def computeAUROC(dataPRED, dataGT, classCount=14):
     plt.title('ROC Curves for all Classes')
     plt.legend()
 
-    output_file = f'/content/roc_auc.png'  # Đường dẫn lưu ảnh
+    output_file = f'./roc_auc.png'  # Đường dẫn lưu ảnh
 
     # Lưu hình xuống file
     plt.savefig(output_file)

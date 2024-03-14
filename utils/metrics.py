@@ -16,6 +16,7 @@ import torch
 import math
 from pdb import set_trace as stop
 import os
+torch.manual_seed(0)
 
 def error_rate(true_targets,predictions):
     acc = metrics.accuracy_score(true_targets, predictions)

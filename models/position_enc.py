@@ -6,7 +6,7 @@ import math
 import torch
 from torch import nn
 from pdb import set_trace as stop
-
+torch.manual_seed(0)
 
 
 class PositionEmbeddingSine(nn.Module):

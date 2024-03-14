@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from pdb import set_trace as stop
 from .utils import get_activation_fn
+torch.manual_seed(0)
 
 class TransformerEncoderLayer(nn.Module):
     def __init__(self, d_model, nhead, dim_feedforward=2048, dropout=0.1, activation="relu"):

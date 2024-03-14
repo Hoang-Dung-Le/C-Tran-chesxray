@@ -8,7 +8,7 @@ from pdb import set_trace as stop
 import os
 from torch.nn import Parameter
 import torch.utils.model_zoo as model_zoo
-
+torch.manual_seed(0)
 
  
 class Backbone(nn.Module):

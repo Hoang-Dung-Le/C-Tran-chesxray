@@ -1,7 +1,8 @@
 '''A wrapper class for optimizer '''
 import numpy as np
 from torch.optim.lr_scheduler import LambdaLR
-
+import torch
+torch.manual_seed(0)
 
 class WarmupLinearSchedule(LambdaLR):
     """ Linear warmup and then linear decay.

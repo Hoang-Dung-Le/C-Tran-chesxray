@@ -10,6 +10,7 @@ from models.utils import custom_replace
 from utils.metrics import *
 import torch.nn.functional as F 
 import warnings
+torch.manual_seed(0)
 warnings.filterwarnings("ignore")
 
 

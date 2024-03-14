@@ -3,7 +3,8 @@ from .dataloader_med import ChestX_ray14
 # import aihc_utils.image_transform as image_transform
 from .aihc_utils import image_transform
 from torch.utils.data import Dataset, DataLoader
-
+import torch
+torch.manual_seed(0)
 def load_dataset(split, args):
     # print("ok")
     # if args.aug_setting == 'moco_v2':

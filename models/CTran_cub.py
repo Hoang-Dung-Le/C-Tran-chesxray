@@ -10,7 +10,7 @@ from .transformer_layers import SelfAttnLayer
 from .backbone import Backbone,InceptionBackbone
 from .utils import custom_replace,weights_init
 from .position_enc import PositionEmbeddingSine,positionalencoding2d
-
+torch.manual_seed(0)
 
  
 class CTranModelCub(nn.Module):
